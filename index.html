@@ -9,26 +9,34 @@
       padding: 0;
       height: 100%;
       background: white;
-      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       overflow: hidden;
+      position: relative;
     }
+
+    .container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
     #headline {
-      position: absolute;
-      top: 40px; /* Abstand von oben */
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 20%;
+      max-width: 80%;
       height: auto;
+      margin-bottom: 20px;
     }
+
     #foto {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 70%;
-      max-height: 70%;
+      max-width: 70vw;
+      max-height: 70vh;
       object-fit: contain;
     }
+
     /* Instagram Link Style */
     #instagram-link {
       position: fixed;
@@ -37,34 +45,33 @@
       text-decoration: none;
       z-index: 10;
     }
+
     #instagram-icon {
-      width: 3vw; /* 3% der Fensterbreite */
+      width: 3vw;
       height: auto;
-      max-width: 30px; /* nicht größer als 30px */
-      min-width: 20px; /* nicht kleiner als 20px */
+      max-width: 30px;
+      min-width: 20px;
       opacity: 1;
       transition: transform 0.3s ease, width 0.3s ease;
     }
+
     #instagram-icon:hover {
       transform: translateY(-3px);
     }
   </style>
 </head>
 <body>
-  
-  <!-- Überschrift oben mittig -->
-  <img id="headline" src="website/every-photo-i-ever-took.png" alt="Every Photo I Ever Took">
 
-  <!-- Hauptfoto perfekt zentriert -->
-  <img id="foto" src="" alt="Foto">
-  
+  <div class="container">
+    <!-- Überschrift immer 80% der Bildbreite -->
+    <img id="headline" src="website/every-photo-i-ever-took.png" alt="Every Photo I Ever Took">
+    <!-- Hauptbild -->
+    <img id="foto" src="" alt="Foto">
+  </div>
+
   <!-- Instagram Icon unten rechts -->
   <a href="https://www.instagram.com/everyphotoievertook/" target="_blank" id="instagram-link">
-    <img 
-      src="https://cdn-icons-png.flaticon.com/512/717/717392.png" 
-      alt="Instagram" 
-      id="instagram-icon"
-    >
+    <img src="https://cdn-icons-png.flaticon.com/512/717/717392.png" alt="Instagram" id="instagram-icon">
   </a>
 
   <!-- Externes JavaScript -->
