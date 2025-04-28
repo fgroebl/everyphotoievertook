@@ -1,38 +1,36 @@
-const totalImages = 999; // oder so viele Bilder wie du hast
-let aktuellesBild = Math.floor(Math.random() * totalImages) + 1; // Zufälliges Startbild
+const fotos = [];
+let index = 1;
 
-function ladeNeuesBild() {
-  const fotoElement = document.getElementById('foto');
-  const headlineElement = document.getElementById('headline');
-
-  let bildPfad = `website/bild-${aktuellesBild.toString().padStart(3, '0')}.jpg`;
-
+function ladeBilder() {
   const img = new Image();
-  img.src = bildPfad;
-
-  img.onload = function() {
-    fotoElement.src = img.src;
-
-    // Sobald das neue Foto geladen ist, passe die Überschrift an
-    headlineElement.style.maxWidth = (fotoElement.clientWidth * 0.8) + 'px';
+  img.src = `website/bild-${String(index).padStart(3, '0')}.jpg`;
+  img.onload = () => {
+    fotos.push(img.src);
+    index++;
+    ladeBilder(); // nächstes Bild versuchen
   };
-
-  img.onerror = function() {
-    console.error("Fehler beim Laden von Bild:", img.src);
+  img.onerror = () => {
+    if (fotos.length > 0) {
+      zeigeBilder();
+    } else {
+      document.getElementById('foto').alt = "Keine Bilder gefunden.";
+    }
   };
-
-  aktuellesBild = Math.floor(Math.random() * totalImages) + 1;
 }
 
-// Beim ersten Laden
-ladeNeuesBild();
-
-// Alle 5 Sekunden neues Bild
-setInterval(ladeNeuesBild, 5000);
-
-// Beim Fenster-Resize auch Überschrift anpassen
-window.addEventListener('resize', function() {
+function zeigeBilder() {
   const fotoElement = document.getElementById('foto');
-  const headlineElement = document.getElementById('headline');
-  headlineElement.style.maxWidth = (fotoElement.clientWidth * 0.8) + 'px';
-});
+
+  function wechsleBild() {
+    const zufallsIndex = Math.floor(Math.random() * fotos.length);
+    fotoElement.src = fotos[zufallsIndex];
+  }
+
+  wechsleBild(); // sofort erstes Bild setzen
+
+  setInterval(wechsleBild, 5000); // ALLE 5000 Millisekunden (= 5 Sekunden)
+}
+
+ladeBilder();
+
+
