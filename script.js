@@ -1,18 +1,7 @@
 const fotos = [];
 let index = 1;
 
-function ladeBild(index) {
-  const img = new Image();
-  img.src = `website/bild-${String(index).padStart(3, '0')}.jpg`;
-  img.onload = () => {
-    fotos.push(img.src);
-  };
-  img.onerror = () => {
-    // Fehler überspringen
-  };
-}
-
-// Lade das erste Bild sofort und starte das Lazy Loading
+// Lade das Bild sofort und starte das Lazy Loading
 function ladeNeuesBild() {
   const fotoElement = document.getElementById('foto');
   const headlineElement = document.getElementById('headline');
@@ -26,8 +15,8 @@ function ladeNeuesBild() {
 
   img.onload = function () {
     fotoElement.src = img.src;
-    // Berechne die Breite der Überschrift (80% der Bildbreite)
-    headlineElement.style.maxWidth = (fotoElement.clientWidth * 0.8) + 'px';
+    // Berechne die Breite der Überschrift (50% der Fensterbreite)
+    headlineElement.style.maxWidth = (window.innerWidth * 0.5) + 'px'; // 50% der Fensterbreite
   };
 
   img.onerror = function () {
@@ -63,7 +52,7 @@ function zeigeBilder() {
 
     // Wenn das Bild geladen wird, wird die Überschrift-Breite angepasst
     fotoElement.onload = function () {
-      headlineElement.style.maxWidth = (fotoElement.clientWidth * 0.8) + 'px';
+      headlineElement.style.maxWidth = (window.innerWidth * 0.5) + 'px'; // 50% der Fensterbreite
     };
   }
 
@@ -74,9 +63,8 @@ function zeigeBilder() {
 
 // Hinzufügen eines Resize-Events für die Echtzeit-Anpassung der Überschrift
 window.addEventListener('resize', function () {
-  const fotoElement = document.getElementById('foto');
   const headlineElement = document.getElementById('headline');
-  headlineElement.style.maxWidth = (fotoElement.clientWidth * 0.8) + 'px';
+  headlineElement.style.maxWidth = (window.innerWidth * 0.5) + 'px'; // 50% der Fensterbreite
 });
 
 ladeBilder();
