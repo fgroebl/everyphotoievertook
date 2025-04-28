@@ -12,12 +12,13 @@
       position: relative;
       overflow: hidden;
     }
+    /* Allgemeine Stile */
     #headline {
       position: absolute;
       top: 40px; 
       left: 50%;
       transform: translateX(-50%);
-      max-width: 50%; /* Überschrift ist jetzt immer 50% der Fensterbreite */
+      max-width: 30%; /* Standardwert für nicht mobile Geräte */
       height: auto;
     }
     #foto {
@@ -48,6 +49,23 @@
     }
     #instagram-icon:hover {
       transform: translateY(-3px);
+    }
+
+    /* Mobile Ansicht - bei Geräten mit einer Breite von bis zu 1024px */
+    @media (max-width: 1024px) {
+      #headline {
+        max-width: 75%; /* Überschrift nimmt 75% der Fensterbreite auf mobilen Geräten ein */
+        top: 20px; /* Weniger Abstand nach oben */
+      }
+      #foto {
+        max-width: 90%; /* Bild breiter für kleinere Bildschirme */
+        max-height: 80%; /* Bildhöhe etwas größer */
+      }
+      #instagram-icon {
+        width: 10vw; /* Größeres Instagram-Icon auf mobilen Geräten */
+        max-width: 40px; /* Maximale Breite für das Icon */
+        min-width: 30px; /* Minimale Breite */
+      }
     }
   </style>
 </head>
