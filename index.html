@@ -66,6 +66,31 @@
         max-width: 40px; /* Maximale Breite für das Icon */
         min-width: 30px; /* Minimale Breite */
       }
+      #credits {
+        width: 25%; /* Breite des Credits-Bildes auf mobilen Geräten */
+        bottom: 10px;
+      }
+    }
+
+    /* Desktop Ansicht */
+    @media (min-width: 1025px) {
+      #credits {
+        width: 10%; /* Breite des Credits-Bildes auf Desktop */
+        bottom: 10px;
+      }
+    }
+
+    /* Bild für Credits am unteren Rand */
+    #credits {
+      position: absolute;
+      bottom: 10px; /* Abstand vom unteren Rand des Bildes */
+      left: 50%;
+      transform: translateX(-50%); /* Zentriert das Bild horizontal */
+    }
+
+    /* Sicherstellen, dass das Bild keine visuelle Veränderung beim Hover hat */
+    #credits:hover {
+      text-decoration: none;
     }
   </style>
 </head>
@@ -84,6 +109,11 @@
       alt="Instagram" 
       id="instagram-icon"
     >
+  </a>
+
+  <!-- Bild für Credits am unteren Rand (mit Link) -->
+  <a href="https://www.fori.at" target="_blank">
+    <img id="credits" src="website/pictures-by-florian-fori-groebl.png" alt="Credits">
   </a>
 
   <!-- Externes JavaScript -->
